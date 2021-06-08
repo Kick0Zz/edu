@@ -3,3 +3,5 @@ Hello world!
 Change 1
 
 file3
+
+change 2
