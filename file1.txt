@@ -12,3 +12,6 @@ Good evening (from branch add-feature2)
 Some new feature
 
 test rebase -i (edit)
+
+
+change 10
