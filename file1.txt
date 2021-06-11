@@ -15,3 +15,13 @@ test rebase -i (edit)
 
 
 change 10
+change 2
+
+Change from user1
+
+change from user2
+
+change2 from user1
+
+bug fix9000
+
