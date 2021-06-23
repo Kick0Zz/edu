@@ -1,0 +1,57 @@
+---
+- hosts: all
+  become: true
+  become_method: sudo
+  become_user: root
+  remote_user: ansible
+  tasks:
+    - name: Install python
+      apt:
+        name=python3
+        state=latest
+    - name: Install python3-pip
+      apt:
+        name=python3-pip
+        update_cache=yes
+        state=latest
+    - name: Install nginx
+      apt:
+        name=nginx
+        state=latest
+    - name: Install python-setuptools
+      apt:
+        name=python3-setuptools
+        state=latest
+    - name: Install python-pkg-resources
+      apt:
+        name=python-pkg-resources
+        state=latest
+    - name: Clone Flaskex
+      git:  repo=https://github.com/anfederico/Flaskex dest=/Flaskex update=yes
+    - name: Install requirements
+      pip:
+             requirements: requirements.txt
+             chdir: /Flaskex
+            #  name: 
+                # - Flask
+                # - WTForms
+                # - SQLAlchemy
+                # - bcrypt
+                # - requests
+                # - flask-heroku
+                # - gunicorn
+             executable: pip3
+    # - name: Instal WTForms
+    #   command: "pip3 install WTForms"
+    # - name: Instal SQLAlchemy
+    #   command: "pip3 install SQLAlchemy"
+    # - name: Instal bcrypt
+    #   command: "pip3 install bcrypt"
+    # - name: Instal requests
+    #   command: "pip3 install requests"
+    # - name: Instal flask-heroku
+    #   command: "pip3 install flask-heroku"
+    # - name: Instal gunicorn
+    #   command: "pip3 install gunicorn"
+    - name: Run Flaskex
+      command: "python /Flaskex/app.py"

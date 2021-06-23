@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  become_user: root
+  tasks:
+    - name: Install python-pip
+      apt:
+        name=python-pip
+        update_cache=yes
+        state=latest
+    - name: Clone Flaskex
+      git:  repo=https://github.com/anfederico/Flaskex dest=/Flaskex update=yes
+    - name: Install requirements
+      pip:
+        requirements: requirements.txt
+        chdir: /Flaskex
+    - name: Run Flaskex
+      command: "python /Flaskex/app.py"
